@@ -1,4 +1,5 @@
 from flask import Flask, request, render_template
+
 from wtform_fields import *
 
 app = Flask(__name__)
