@@ -1,6 +1,6 @@
 from flask import Flask, request, render_template
 
-from wtform_fields import *
+from wtform_registro import *
 
 app = Flask(__name__)
 app.secret_key = 'replace later'
@@ -8,9 +8,9 @@ app.secret_key = 'replace later'
 @app.route("/", methods=['GET', 'POST'])
 def index():
 
-    reg_form = RegistrationForm()
+    reg_form = Registro()
     if reg_form.validate_on_submit():
-        return "Great!"
+        return "Registro completado"
     return render_template("index.html", form=reg_form)
         
 
