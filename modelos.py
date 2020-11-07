@@ -15,4 +15,4 @@ class Usuario(db.Model):
     edad = db.Column(db.String(2), nullable=False)
     genero = db.Column(db.String(1), nullable=False)
 
-    db.create_all()
+    

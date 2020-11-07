@@ -4,11 +4,11 @@ from wtforms.validators import InputRequired, Length, EqualTo
 
 class Registro(FlaskForm):
 
-    nombres = StringField('nombres_label',
+    nombre = StringField('nombre_label',
         validators=[InputRequired(message = "Requiere un nombre"),
         Length(min=0 , max=30, message="El nombre debe contener maximo 30 caracteres")])
    
-    apellidos = StringField('apellidos_label',
+    apellido = StringField('apellido_label',
         validators=[InputRequired(message = "Requiere un apellido"),
         Length(min=0 , max=30, message ="El apellido debe contener maximo 30 caracteres")])
 

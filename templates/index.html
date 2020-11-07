@@ -7,8 +7,8 @@
         <h2>Registro Usuario</h2>
         <form action="{{ url_for('index') }}", method="POST">
   
-            {{ displayField(form.nombres, 'Nombres', autocomplete="off", autofocus=true) }}
-            {{ displayField(form.apellidos, 'Apellidos', autocomplete="off", autofocus=true) }}
+            {{ displayField(form.nombre, 'Nombre', autocomplete="off", autofocus=true) }}
+            {{ displayField(form.apellido, 'Apellido', autocomplete="off", autofocus=true) }}
             {{ displayField(form.usuario, 'Usuario', autocomplete="off", autofocus=true) }}
             {{ displayField(form.contraseña, 'Contraseña') }}
             {{ displayField(form.confirmar_contraseña, 'Confirmar Contraseña') }}
