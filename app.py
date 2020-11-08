@@ -1,6 +1,7 @@
 from flask import Flask, request, render_template, session, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from passlib.hash import pbkdf2_sha256
+from flask_login import LoginManager, login_user, current_user, login_required, logout_user
 
 from wtform_registro import *
 from modelos import *
@@ -12,6 +13,18 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://mciebhbvvwkyje:8c7c356e012a9
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False  
 
 db = SQLAlchemy(app)
+
+#configurar flask login
+
+login = LoginManager(app)
+login.init_app(app)
+
+
+@login.user_loader
+def load_user(id):
+
+    return User.query.get(int(id))
+
 
 @app.route("/", methods=['GET', 'POST'])
 def index():
@@ -45,11 +58,25 @@ def inicio():
     inicio_form = InicioSesion()
 
     if inicio_form.validate_on_submit():
-        return "Haz iniciado sesion"
+        user_object = User.query.filter_by(usuario=inicio_form.usuario.data).first()
+        login_user(user_object)
+        return redirect(url_for('chat'))
 
     return render_template("inicio.html",  form=inicio_form)    
 
-    
+@app.route("/chat", methods=['GET', 'POST'])
+def chat():
+    if not current_user.is_authenticated:   
+        return "Inicia sesion antes de iniciar un chat" 
+
+    return "Hablemos"
+
+
+@app.route("/logout", methods=['GET'])
+def logout():
+
+    logout_user()
+    return "Haz salido"
 
 if __name__ == "__main__":
 
