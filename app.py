@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, session
+from flask import Flask, request, render_template, session, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 
 from wtform_registro import *
@@ -32,11 +32,21 @@ def index():
             db.session.add(user)
             db.session.commit()
             
-
-        return "Ingresado en la base de datos"
+        return redirect(url_for('inicio'))   
 
     return render_template("index.html", form=reg_form)
 
+@app.route("/inicio", methods=['GET','POST'])
+def inicio():
+
+    inicio_form = InicioSesion()
+
+    if inicio_form.validate_on_submit():
+        return "Haz iniciado sesion"
+
+    return render_template("inicio.html",  form=inicio_form)    
+
+    
 
 if __name__ == "__main__":
 

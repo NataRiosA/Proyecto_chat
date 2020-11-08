@@ -1,0 +1,20 @@
+{% from 'formulario.html' import displayField %}
+{% extends 'prelogin.html' %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+    <h2>Inicia sesion ahora!</h2>
+    <p>Introduce tu usuario/contraseña para iniciar sesion</p>
+
+    <form action="{{url_for('inicio')}}" method='POST'>
+
+        {{ displayField(form.usuario, 'Usuario', autocomplete="off", autofocus=true) }}
+        {{ displayField(form.contrasena, 'Contraseña') }}
+
+        <div>
+            {{ form.boton_inicio}}
+        </div>
+        {{ form.csrf_token}}
+    </form>
+{% endblock %}    
