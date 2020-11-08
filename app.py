@@ -25,10 +25,7 @@ def index():
         edad = reg_form.edad.data
         genero = reg_form.genero.data
 
-        user_object = User.query.filter_by(usuario=usuario).first()
-        if user_object:
-            return "Ya se encuentra en uso este nombre de usuario"  
-
+        
         with app.app_context():     
             user = User(nombre=nombre, apellido=apellido, usuario=usuario, contrasena=contrasena, edad=edad, genero=genero)                  
             db.create_all() 
