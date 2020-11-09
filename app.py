@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, session, redirect, url_for
+from flask import Flask, request, render_template, session, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 from passlib.hash import pbkdf2_sha256
 from flask_login import LoginManager, login_user, current_user, login_required, logout_user
@@ -47,7 +47,7 @@ def index():
             db.create_all() 
             db.session.add(user)
             db.session.commit()
-            
+        flash('Registro exitoso. Por favor inicia sesion', 'Exito')    
         return redirect(url_for('inicio'))   
 
     return render_template("index.html", form=reg_form)
@@ -66,8 +66,9 @@ def inicio():
 
 @app.route("/chat", methods=['GET', 'POST'])
 def chat():
-    if not current_user.is_authenticated:   
-        return "Inicia sesion antes de iniciar un chat" 
+    if not current_user.is_authenticated:  
+        flash('Por favor inicia sesion', 'peligro') 
+        return redirect(url_for('inicio')) 
 
     return "Hablemos"
 
@@ -76,8 +77,8 @@ def chat():
 def logout():
 
     logout_user()
-    return "Haz salido"
-
+    flash('Desconectado exitosamente')
+    return redirect(url_for('inicio'))
 if __name__ == "__main__":
 
     db.init_app(app)
