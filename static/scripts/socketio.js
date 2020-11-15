@@ -8,6 +8,12 @@ document.addEventListener('DOMContentLoaded', () => {
         socket.send("Todo bien en casa");
     });
 
+    document.querySelector('#send_message').onclick = () => {
+        socket.send({'msg': document.querySelector('#user_message').value, 'usuario': usuario, 'room': room });
+
+        document.querySelector('#user_message').value = '';
+    };
+
     socket.on('message', data => {
         const p = document.createElement('p');
         const span_username = document.createElement('span');
@@ -26,11 +32,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 
-    document.querySelector('#send_message').onclick = () => {
-        socket.send({'msg': document.querySelector('#user_message').value, 'usuario': usuario, 'room': room });
-
-        document.querySelector('#user_message').value = '';
-    }
 
     document.querySelectorAll('.select-room').forEach(p=> {
         p.onclick = () => {
