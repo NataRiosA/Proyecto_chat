@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     joinRoom("Principal");
 
     socket.on ('connect', ()=>{
-        socket.send("Todo bien en casa");
+        socket.send("Proyecto");
     });
 
     document.querySelector('#send_message').onclick = () => {
@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
         p.onclick = () => {
             let newRoom = p.innerHTML;
             if (newRoom == room){
-                msg = `You are already in ${room} room.`
+                msg = `Ya estas en la sala  ${room} .`
                 printSysMsg(msg);
             } else {
                 leaveRoom(room);

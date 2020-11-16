@@ -72,7 +72,7 @@ def registro():
             db.session.add(user)
             db.session.commit()
         # Si hay exito imprime en la pagina y redirige a login
-        flash('Registro exitoso. Por favor inicia sesion', 'Exito')
+        flash('Registro exitoso. Por favor inicia sesion')
 
         # Si no hay exito regresa a la pagina de registro
         return redirect(url_for('index'))
@@ -98,10 +98,10 @@ def index():
 
 
 @app.route("/chat", methods=['GET', 'POST'])
-def chat():
-    # if not current_user.is_authenticated:
-    #   flash('Por favor inicia sesion', 'peligro')
-    #  return redirect(url_for('inicio'))
+def chat(): 
+    if not current_user.is_authenticated:
+        flash('Por favor inicia sesion')
+        return redirect(url_for('index'))
 
     return render_template('chat.html', usuario = current_user.usuario, rooms=ROOMS)
 
@@ -122,13 +122,12 @@ def message(data):
 @socketio.on('join')
 def join(data):
     join_room(data['room']) 
-    send({'msg': data['usuario'] + "Te has unido a la " + data['room'] + " sala."}, room=data['room'])   
+    send({'msg': data['usuario'] + "  Te has unido a la sala  " + data['room'] + " "}, room=data['room'])   
 
 @socketio.on('leave')
 def leave(data):
     leave_room(data['room'])
-    send({'msg': data['usuario'] + "Ha salido de la " + data['room'] + " sala."}, room=data['room'])   
-
+    send({'msg': data['usuario'] + "  Ha salido de la sala  " + data['room'] + " "}, room=data['room'])
 
 
 

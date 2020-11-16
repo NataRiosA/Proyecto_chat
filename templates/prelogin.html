@@ -5,54 +5,53 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>{% block title %}{% endblock %} - Registro</title>
+        <title>{% block title %}{% endblock %} - TerTulia</title>
 
         <!-- Bootstrap -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
-        <!-- Custom css for prelogin pages -->
-        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/main.css') }}">
+        <!-- CSS  -->
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/formulario.css') }}">
     </head>
     <body>
-        <!-- Main section start -->
+        <!-- seccion principal -->
         <div class="main-section">
 
-            <div class="jumbotron">
-              <h1 class="display-4">TertuliApp</h1>
-              <center><p class="lead">Inicia sesión y comienza a hablar!</p></center>
+            <div class="panel-superior">
+              <h1 class="titulo">TertuliApp</h1>
+              <center><p class="subtitulo">Inicia sesión y comienza a hablar!</p></center>
+              <hr>
             </div>
 
-            <!-- Demo image start -->
+            <!-- espacio para imagenes-->
             <div id="image-section">
                 <picture>
-                    <img class="card" src="{{ url_for('static', filename='images/imagen1.jpg') }}">
+                    <img class="card">
                 </picture>
             </div> 
-            <!-- Demo image end -->
 
-            <!-- Righthand side start -->
-            <div id="righthand-side">
 
-                <!-- Flash error messages start -->
+            <!-- Panel derecho-->
+            <div id="panel-derecho">
+
+                <!-- Mensajes -->
                 {% with messages = get_flashed_messages(with_categories=true) %}
-                    <!-- The messages, if any, are returned as a list. And not all redenring of the pages will have a message. So we put a condition to check whether the messages list is empty -->
+                    <!-- Si hay mensajes se devuelven como una lista. Y no todas las redenciones de las páginas tendrán un mensaje. Entonces ponemos una condición para verificar si la lista de mensajes está vacía-->
                     {% if messages %}
-                        <!-- We will set the class form our custom css file we had created earlier. And we want to see the first item in the list. -->
+                        <!-- Estableceremos la clase desde nuestro archivo css personalizado que habíamos creado anteriormente. Y queremos ver el primer elemento de la lista. -->
                         <div class="alert alert-{{ messages[0][0] }} " role="alert">
                             {{ messages[0][1] }}
                         </div>
                         <hr>
                     {% endif %}
                 {% endwith %}
-                <!-- Flask error messages end -->
 
                 {% block content%}
                 {% endblock %}
 
             </div>
-            <!-- Righthand side end -->
+ 
         </div>
-        <!-- Main section end -->
 
     </body>
 </html>

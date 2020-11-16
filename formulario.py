@@ -77,4 +77,4 @@ class InicioSesion(FlaskForm):
          validators= [InputRequired(message="Contraseña requerida"),
          invalid_credentials])
 
-    boton_inicio = SubmitField('Inicio')         
+    boton_inicio = SubmitField('Iniciar Sesión')         
