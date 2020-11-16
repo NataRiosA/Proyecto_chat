@@ -2,18 +2,16 @@
 
 # ------LIBRERIAS-----
 # Principales: webApp, BD, cifrado hash, login de flask, websockets
-
-from time import localtime, strftime
 from flask import Flask, request, render_template, session, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
-from passlib.hash import pbkdf2_sha256
 from flask_login import LoginManager, login_user, current_user, login_required, logout_user
+from passlib.hash import pbkdf2_sha256
 from flask_socketio import SocketIO, send, emit, join_room, leave_room
+from time import localtime, strftime
 
-# secundatias:
-from wtform_registro import *
+# secundarias:
 from modelos import *
-
+from formulario import *
 
 # ------Inicializacion del servidor--------
 app = Flask(__name__)
@@ -46,12 +44,11 @@ def load_user(id):
 # ruta principal para index.html
 
 
-@app.route("/", methods=['GET', 'POST'])
-def index():
+@app.route("/registro", methods=['GET', 'POST'])
+def registro():
 
     # Objeto de la clase registro
     reg_form = Registro()
-
     # Validamos el formulario que digitamos
     if reg_form.validate_on_submit():
 
@@ -78,15 +75,15 @@ def index():
         flash('Registro exitoso. Por favor inicia sesion', 'Exito')
 
         # Si no hay exito regresa a la pagina de registro
-        return redirect(url_for('inicio'))
+        return redirect(url_for('index'))
 
-    return render_template("index.html", form=reg_form)
+    return render_template("registro.html", form=reg_form)
 
 # Ruta de inicio de sesion para login.html
 
 
-@app.route("/inicio", methods=['GET', 'POST'])
-def inicio():
+@app.route("/", methods=['GET', 'POST'])
+def index():
 
     inicio_form = InicioSesion()
     # Validamos el formulario que digitamos
@@ -97,7 +94,7 @@ def inicio():
         return redirect(url_for('chat'))
         # Si hay exito imprime en la pagina y redirige al chat
 
-    return render_template("inicio.html",  form=inicio_form)
+    return render_template("index.html",  form=inicio_form)
 
 
 @app.route("/chat", methods=['GET', 'POST'])
@@ -113,8 +110,8 @@ def chat():
 def logout():
 
     logout_user()
-    flash('Desconectado exitosamente')
-    return redirect(url_for('inicio'))
+    # flash('Desconectado exitosamente')
+    return redirect(url_for('index'))
 
 
 @socketio.on('message')
