@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
         p.onclick = () => {
             let newRoom = p.innerHTML;
             if (newRoom == room){
-                msg = `Ya estas en la sala  ${room} .`
+                msg = `Ya estas en la sala ${room}.`
                 printSysMsg(msg);
             } else {
                 leaveRoom(room);

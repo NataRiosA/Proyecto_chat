@@ -122,12 +122,12 @@ def message(data):
 @socketio.on('join')
 def join(data):
     join_room(data['room']) 
-    send({'msg': data['usuario'] + "  Te has unido a la sala  " + data['room'] + " "}, room=data['room'])   
+    send({'msg': data['usuario'] + "  Te has unido a la sala  " + data['room'] + "."}, room=data['room'])   
 
 @socketio.on('leave')
 def leave(data):
     leave_room(data['room'])
-    send({'msg': data['usuario'] + "  Ha salido de la sala  " + data['room'] + " "}, room=data['room'])
+    send({'msg': data['usuario'] + "  Ha salido de la sala  " + data['room'] + "."}, room=data['room'])
 
 
 
