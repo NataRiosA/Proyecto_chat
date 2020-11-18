@@ -1,19 +1,30 @@
+//Cliente jquery: encargado de la conexion websocket con el servidor python 
+
+// --------------------INICIALIZACION DEL CLIENTE-------------------------------
+
+// Iniciando conexion socket
 document.addEventListener('DOMContentLoaded', () => {
     var socket = io();
 
+    // sala principal como default
     let room = ("Principal");
     joinRoom("Principal");
 
+    // Probando los sockets
     socket.on ('connect', ()=>{
-        socket.send("Proyecto");
+        socket.send("cliente websocket a full");
     });
 
+// -----------------------CONTROL DE MENSAJES-------------------------------    
+
+    // lee y envia mensajes desde el cliente al servidor
     document.querySelector('#send_message').onclick = () => {
         socket.send({'msg': document.querySelector('#user_message').value, 'usuario': usuario, 'room': room });
 
         document.querySelector('#user_message').value = '';
     };
 
+    // Recibe y envia mensajes desde el servidor a todos los clientes
     socket.on('message', data => {
         const p = document.createElement('p');
         const span_username = document.createElement('span');
@@ -31,8 +42,9 @@ document.addEventListener('DOMContentLoaded', () => {
          
     });
 
+// ------------------CONTROL DE SALAS DE CHAT-----------------------------------
 
-
+    // Seleccionar una sala
     document.querySelectorAll('.select-room').forEach(p=> {
         p.onclick = () => {
             let newRoom = p.innerHTML;
@@ -47,10 +59,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Funcion para salir de un sala
     function leaveRoom(room){
         socket.emit('leave', {'usuario': usuario, 'room': room});
     }
 
+    // Funcion para entrar a una sala
     function joinRoom(room){
         socket.emit('join', {'usuario': usuario, 'room': room});
         //borrar mensaje de pantalla
@@ -59,6 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelector('#user_message').focus();
     }
 
+    // Funcion imprimir para todos los usuarios
     function printSysMsg(msg){
         const p = document.createElement('p');
         p.innerHTML = msg;
