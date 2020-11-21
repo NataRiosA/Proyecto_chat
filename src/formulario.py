@@ -78,3 +78,10 @@ class InicioSesion(FlaskForm):
          invalid_credentials])
 
     boton_inicio = SubmitField('Iniciar Sesión')         
+
+
+class EliminarSala(FlaskForm):
+
+    input_eliminar_sala = StringField ('sala_label')   
+
+    boton_eliminar_sala = SubmitField('Eliminar sala')       
