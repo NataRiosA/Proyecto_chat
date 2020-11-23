@@ -1,6 +1,14 @@
 h1 {
-  color: #ffffff;
+  color: #fffdfd;
+  width: 100%;
+  background: url('/static/img/charla.png')
+  no-repeat;
+  position: relative;
+  height: 40px;
+  background-position-x: 300px;
+  
 }
+
 h2{
   color: #32d8b4;
 }
@@ -16,19 +24,25 @@ h2{
 #main-section {
   overflow: hidden; 
   width: 100%;
-  
 }
 
+#menu {
+  width: 300px;
+  height: 500px;
+  background-color: rgb(255, 255, 255);
+  overflow: scroll;
+}
+
+
 #sidebar {
-  background-color: #fffffff6;
+  background-color: rgb(255, 255, 255);
   margin-top: 3em;
   float: left; 
   min-height: 94vh;
   min-width: 52vh;
   padding-left: 1em;
   padding-top: 2.5em;
-  padding-right:1em;
-  border-right: 0.001px solid #b2b4b3;
+  /* border-right: 0.001px solid #b2b4b3; */
 }
 
 #sidebar p {
@@ -39,6 +53,7 @@ h2{
 #sidebar p:hover {
   background-color: #32d8b4;
 }
+
 
 #sidebar h4 {padding-left: 0.5em;}
 
@@ -51,7 +66,7 @@ h2{
   transition: visibility 0s, opacity 0.5s;
   color: #335177;
 }
-
+/* 
 @media (max-width: 567px) {
   #sidebar {
       display: none;
@@ -65,7 +80,7 @@ h2{
       visibility: visible;
       opacity: 1;
   }
-}
+} */
 
 
 .cursor-pointer {
@@ -74,7 +89,7 @@ h2{
 
 #rightside-pannel {
   overflow: hidden; /* Make this div take up the rest of the horizontal space, and no more */
-  background-color: #fafafaf6;
+  background-color: rgb(255, 255, 255);
   margin-top: -1em;
 }
 
@@ -92,14 +107,18 @@ h2{
   margin-right: 10px;
   margin-top: 20px;
   background-color: #ffffff;
+  border-radius: 20px;
+  border-style: outset;
+  border-width: 3px;
+  width: fit-content;
 }
+
 
 #input-area {
   padding-left: 1em;
   padding-right: 1em;
-  bottom: 0;
   margin-top: 5px;
- 
+  margin-bottom: 2px;
 }
 
 #input-nueva-sala{
@@ -116,14 +135,14 @@ h2{
   padding-right: 3.1em;
   bottom: 0;
 }
-#eliminar-sala{
+#eliminarSala{
   margin-left: 30px;
   margin-right: 10px;
   margin-top: 8px;
   padding-left: 2em;
   padding-right: 2em;
   bottom: 0;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 }
 
 

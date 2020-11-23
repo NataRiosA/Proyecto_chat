@@ -40,6 +40,16 @@ input[type='text']:focus, input[type='password']:focus {
     padding-bottom: 2em;
 }
 
+.titulo{
+    width: 100%;
+    background: url('/static/img/Logo1.png')
+    no-repeat;
+    position: relative;
+    height: 65px;
+    background-position-x: 500px;
+    background-position-y: px;
+}
+
 #image-section {
     min-width: 26%;
     max-width: 26%;

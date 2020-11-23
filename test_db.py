@@ -11,7 +11,7 @@ engine = create_engine(SQLALCHEMY_DATABASE_URI)
 conn = engine.connect()
 
 query = """
-SELECT * FROM usuarios2;
+SELECT usuario FROM usuarios2;
 """
 
 df = pd.read_sql(query, conn)

@@ -20,7 +20,7 @@
     <!-- Background (Fondo) -->
     <div class="wrapper">
         <!-- Barra menu principal -->
-        <nav class="navbar navbar-expand-sm navbar-light fixed-top" style="background-color: rgb(37, 211, 102)">
+        <nav class="navbar navbar-expand-sm navbar-light fixed-top" style="background-color: rgb(82, 231, 174)">
 
             <!-- Titulo -->
             <div class="container-fluid">
@@ -40,40 +40,51 @@
         <div id="main-section">
             <nav id="sidebar">
                 <!-- titulo crear sala -->
-                <h2>MENU SALAS</h2>
+                <div id="menu">
+                    <h2>MENU SALAS</h2>
 
-                <form action="", method="POST">
-                    <p>
-                    <!-- caja de texto para crear nueva sala -->
-                        <input type="text" id="nueva_sala" class = "form-control input-sm" name="nueva_sala" placeholder="Escribe el nombre de la sala..."/><br>
-            
+                    <form action="" , method="POST">
+
+                        <!-- caja de texto para crear nueva sala -->
+                        <input type="text" id="nueva_sala" class="form-control input-sm" name="nueva_sala"
+                            placeholder="Nombre sala nueva..." /><br>
+
                         <div>
-                            <input type="submit" id="crear-sala" class="btn btn-outline-success" name="crear-sala" value="Crear sala" />
+                            <input type="submit" id="crear-sala" class="btn btn-outline-success" name="crear-sala"
+                                value="Crear sala" />
                         </div>
-                    </p>
-                    <p>
-                        {{ displayField(form.input_eliminar_sala, 'Escribe el nombre de la sala a eliminar', autocomplete="off") }}
+
+                        <p>
+                            {{ displayField(form.input_eliminar_sala, 'Nombre sala a eliminar...', autocomplete="off") }}
                         <div>
-                            {{ form.boton_eliminar_sala }}
+                            <!-- {{ form.boton_eliminar_sala }} -->
+                            <input type="submit" id="eliminarSala" class="btn btn-outline-success" name="eliminarSala"
+                                value="Eliminar sala" />
                         </div>
-                    </p>
-                </form> 
+                        </p>
+                    </form>
 
-                <!-- Mostrar salas y sala pricipal -->
-                <h2>Salas creadas</h2>
-                {% for room in rooms %}
-                <p class="seleccionar-sala">{{ room|title}}</p>
-                {% endfor %}
-
-                <div>
-                    <h2>MENU USUARIOS</h2>
-                    <table>
-                    {% for us in user %}
-                        <tr>
-                            <td>{{us.usuario}}</td>
-                        </tr>
+                    <!-- Mostrar salas y sala pricipal -->
+                    <h2>Salas creadas</h2>
+                    {% for room in rooms %}
+                    <p class="seleccionar-sala">{{ room|title}}</p>
                     {% endfor %}
-                    </table>
+
+                    <div>
+                        <h2>Lista de usuarios</h2>
+                        <center>
+                        <table class="table-striped">
+                            {% for us in user %}
+                            <tr>
+                                <td>{{us.id}}</td>
+                                 <td> - </td>
+                                 <td></td>
+                                <td>{{us.usuario}}</td>
+                            </tr>
+                            {% endfor %}
+                        </table>
+                        </center>
+                    </div>
                 </div>
 
             </nav>
@@ -102,7 +113,7 @@
                 <div id="input-area" class="input-group mb-3">
                     <input type="text" class="form-control input-sm" id="nuevo-mensaje" placeholder="Escribe aquí"
                         autocomplete="off">
-                    <button type="button" class="btn btn-outline-success" id="enviar-mensaje">Enviar</button>
+                    <button type="button" class="btn btn-success" id="enviar-mensaje">Enviar</button>
                 </div>
             </div>
         </div>
