@@ -179,8 +179,6 @@ def leave(data):
 # -----------------------------PRINCIPAL----------------------------------------
 
 if __name__ == "__main__":
-
-    db.init_app(app)
     app.run()
     # socketio.run(app, debug=True)
     # app.run(debug=True)
