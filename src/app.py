@@ -18,8 +18,6 @@ from formulario import *
 # -----------------------CONFIGURACION DEL SERVIDOR----------------------------
 
 app = Flask(__name__)
-PORT=500
-DEBUG = False
 app.secret_key = os.environ.get('SECRET')
 
 # Direccion de BD: postgres de heroku
@@ -181,6 +179,6 @@ def leave(data):
 # -----------------------------PRINCIPAL----------------------------------------
 
 if __name__ == "__main__":
-    app.run[port = PORT, debug = DEBUG]
+    app.run()
     # socketio.run(app, debug=True)
     # app.run(debug=True)
