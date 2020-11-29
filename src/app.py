@@ -18,7 +18,7 @@ from formulario import *
 # -----------------------CONFIGURACION DEL SERVIDOR----------------------------
 
 app = Flask(__name__)
-PORT=5000
+PORT=500
 DEBUG = False
 app.secret_key = os.environ.get('SECRET')
 
